@@ -5,18 +5,28 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
+    <!-- Home Fragment -->
     <fragment
         android:id="@+id/nav_home"
         android:name="ahmedyasserzrelli.itbs.mybestlocations.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <!-- Dashboard Fragment -->
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="ahmedyasserzrelli.itbs.mybestlocations.ui.dashboard.DashboardFragment"
+        android:label="@string/menu_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <!-- Gallery Fragment -->
     <fragment
         android:id="@+id/nav_gallery"
         android:name="ahmedyasserzrelli.itbs.mybestlocations.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
+    <!-- Slideshow Fragment -->
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="ahmedyasserzrelli.itbs.mybestlocations.ui.slideshow.SlideshowFragment"

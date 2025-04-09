@@ -48,6 +48,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".AddPositionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_position"
+            android:theme="@style/Theme.MyBestLocations.NoActionBar" />
+
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/Theme.MyBestLocations.NoActionBar" />
+
+        <activity
+            android:name=".MapPickerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map_picker"
+            android:theme="@style/Theme.MyBestLocations.NoActionBar" />
+
     </application>
 
 </manifest>

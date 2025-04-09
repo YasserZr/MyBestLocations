@@ -3,12 +3,15 @@ package ahmedyasserzrelli.itbs.mybestlocations;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import ahmedyasserzrelli.itbs.mybestlocations.Config;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
@@ -19,6 +22,9 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.Priority;
 import android.location.Location;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AddPositionActivity extends AppCompatActivity {
 
@@ -63,7 +69,17 @@ public class AddPositionActivity extends AppCompatActivity {
         });
 
         btnAdd.setOnClickListener(v -> {
-            // TODO: Add your logic for adding the position using API and serverIp
+            String pseudo = etPseudo.getText().toString();
+            String numero = etNumero.getText().toString();
+            String latitude = etLatitude.getText().toString();
+            String longitude = etLongitude.getText().toString();
+
+            if (pseudo.isEmpty() || numero.isEmpty() || latitude.isEmpty() || longitude.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields.", Toast.LENGTH_SHORT).show();
+            } else {
+                // Call AsyncTask to add the position to the server
+                new AddPositionTask().execute(pseudo, numero, latitude, longitude);
+            }
         });
     }
 
@@ -111,5 +127,45 @@ public class AddPositionActivity extends AppCompatActivity {
             etLongitude.setText(String.valueOf(data.getDoubleExtra("lng", 0)));
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    // AsyncTask to handle adding position to the server
+    private class AddPositionTask extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            String pseudo = params[0];
+            String numero = params[1];
+            String latitude = params[2];
+            String longitude = params[3];
+
+            // Build the URL for adding the position
+            String url = Config.URL_ADDPOSITION + "?pseudo=" + pseudo
+                    + "&numero=" + numero + "&latitude=" + latitude + "&longitude=" + longitude;
+
+            // Create JSONParser to send request
+            JSONParser parser = new JSONParser();
+            JSONObject result = parser.makeRequest(url);
+
+            try {
+                if (result != null && result.getInt("success") == 1) {
+                    return true; // Position added successfully
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return false; // Failed to add position
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success) {
+            if (success) {
+                Toast.makeText(AddPositionActivity.this, "Position added successfully!", Toast.LENGTH_SHORT).show();
+                finish(); // Close the activity
+            } else {
+                Toast.makeText(AddPositionActivity.this, "Failed to add position. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

@@ -36,7 +36,16 @@ public class PositionAdapter extends ArrayAdapter<Position> {
         Button btnShowMap = convertView.findViewById(R.id.btnShowMap);
         Button btnDelete = convertView.findViewById(R.id.btnDelete);
 
-        tvInfo.setText(p.getPseudo() + " - " + p.getNumero());
+        if (p != null) {
+            String pseudo = p.getPseudo();
+            String numero = p.getNumero();
+
+            if (pseudo != null && numero != null) {
+                tvInfo.setText(pseudo + " - " + numero);
+            } else {
+                tvInfo.setText("Invalid Position");
+            }
+        }
 
         btnShowMap.setOnClickListener(v -> {
             Intent intent = new Intent(context, MapsActivity.class);
@@ -59,6 +68,7 @@ public class PositionAdapter extends ArrayAdapter<Position> {
 
         return convertView;
     }
+
 
     // AsyncTask to handle the delete request
     private class DeletePositionTask extends AsyncTask<String, Void, Boolean> {
