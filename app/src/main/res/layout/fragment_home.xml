@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/textView2"
@@ -15,16 +16,26 @@
         android:gravity="center"
         android:text="Best Locations"
         android:textColor="#8BC34A"
-        android:textSize="34sp" />
+        android:textSize="34sp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btnLoad"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#5AF2C2"
-        android:gravity="center"
         android:text="Load Data"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnNewData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFA726"
+        android:text="New Data"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp" />
 
     <ListView
         android:id="@+id/lv"

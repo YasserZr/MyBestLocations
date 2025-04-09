@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etPseudo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pseudo" />
+
+    <EditText
+        android:id="@+id/etNumero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numero" />
+
+    <EditText
+        android:id="@+id/etLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Latitude"
+        android:enabled="false" />
+
+    <EditText
+        android:id="@+id/etLongitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Longitude"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/btnPickFromMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick from Map" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Position" />
+
+</LinearLayout>
